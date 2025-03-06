@@ -14,11 +14,12 @@ class Humano:
     def dormira(self) -> None :
                 print("Estoy durmiendo")
 
-if __name__=="main":
+if __name__ == '__main__':
     bryan = Humano("Bryan",21,1.65,65)
     print(bryan.nombre)
     print(bryan.edad)
     print(bryan.altura)
     print(bryan.peso)
     bryan.edad=32
-    print(bryan.peso)
+    print(bryan.edad)
+    bryan.camina()
