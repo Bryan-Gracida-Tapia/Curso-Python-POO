@@ -8,7 +8,7 @@ class Empleado:
         Empleado.no_id += 1
 
     def __str__(self) -> str:
-        return f"Empleado (nombre:{self.nombre}, sueldo del empleado:{self.sueldo})"
+        return f"Empleado (ID:{self.id}, nombre:{self.nombre}, sueldo del empleado:{self.sueldo})"
 
     def aumentar_sueldo(self,porcentaje:float) -> None:
         aumento = (self.sueldo * porcentaje)/100
