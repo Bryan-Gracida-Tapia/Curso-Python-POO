@@ -2,18 +2,34 @@
 
 # ///////////////////////////////////////////////////////////////////////////////////////// Estudiante.
 class Avatar:
+    """
+    En esta clase se creara un personaje.
+    """
     no_id = 1
     def __init__(self):
+        """
+        Función que asignará el ID del personaje y iniciará la posición del personaje
+        """
         self.id = Avatar.no_id
         self.x = 0
         self.y = 0
         Avatar.no_id += 1
     def __str__(self) -> str:
+        """
+        Función que retorna los atributos del personaje
+        """
         return f"Avatar (ID:{self.id}, posición:{self.y},{self.x})"
     def posicion_actual(self) -> None:
+        """
+        Función que muestra la posición del personaje
+        """
         print(f"Avatar numero {self.id} se encuentra en la posición: ({self.x},{self.y})")
 
     def Movimiento(self,ordenes:str) -> None:
+        """
+        Función que cambiara la posición del personaje dependiendo el texto ingresado
+        :param ordenes: Recibe una cadena con las instrucciones
+        """
         for letra in ordenes:
             if letra == "W" or letra == "w" and self.y < 10:
                     self.y += 1
