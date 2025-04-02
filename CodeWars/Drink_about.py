@@ -1,3 +1,5 @@
+# Gracida Tapia Bryan.
+# 1 de Abril del 2025.
 """
 Kids drink toddy.
 Teens drink coke.
@@ -13,6 +15,10 @@ Young under 21 old.
 Adults have 21 or more.
 """
 def people_with_age_drink(age):
+    """
+    Función que identifica la bebida a tomar según la edad.
+    :param age: Eda de la persona.
+    """
     if type(age) == int:
         if (age < 14): return 'drink toddy'
         elif (age >= 14 and age < 18): return 'drink coke'
