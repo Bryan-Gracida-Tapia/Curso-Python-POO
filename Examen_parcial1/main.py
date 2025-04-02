@@ -41,35 +41,36 @@ def main()->None:
                 operacion = 0
                 while operacion != 12:
                     operacion = Menus.menu_seleccion_operaciones()
-                    if operacion == 1:  # ................................ Crear jugador nuevo.
+                    # ................................ Crear jugador nuevo.
+                    if operacion == 1:
                         nombre = input(Fore.WHITE + "Nombre del jugador: ")
                         camiseta = int(input(Fore.WHITE + "Número de camiseta: "))
                         nuevo_jugador = Jugador(nombre, camiseta)
                         jugadores_libres.append(nuevo_jugador)
                         print(Fore.GREEN + f"Jugador {nombre} creado correctamente.")
-
-                    elif operacion == 2:  # ................................ Crear un equipo nuevo.
+                    # ................................ Crear un equipo nuevo.
+                    elif operacion == 2:
                         nombre_equipo = input(Fore.WHITE + "Nombre del equipo: ")
                         jugador_inicial = Jugador('pendiente',0,0)
                         equipo = Equipo(nombre_equipo,jugador_inicial)
                         equipos_libres.append(equipo)
                         print(Fore.GREEN + f"Equipo {nombre_equipo} creado correctamente.")
-
-                    elif operacion == 3:  # ................................ Ver lista de jugadores.
+                    # ................................ Ver lista de jugadores.
+                    elif operacion == 3:
                         if not torneo_elejido.equipos:
                             print(Fore.RED + "No hay jugadores creados.")
                         else:
-                            for equipo in torneo_elejido:
+                            for equipo in torneo_elejido.equipos:
                                 print(Fore.CYAN + f"     {equipo}")
                                 equipo.mostrar_jugadores()
-
-                    elif operacion == 4:  # ................................ Ver lista de equipos.
+                    # ................................ Ver lista de equipos.
+                    elif operacion == 4:
                         if not torneo_elejido.equipos:
                             print(Fore.RED + "No hay equipos creados.")
                         else:
                             torneo_elejido.mostrar_equipos()
-
-                    elif operacion == 5:  # ................................ Agregar jugadores a un equipo.
+                    # ................................ Agregar jugadores a un equipo.
+                    elif operacion == 5:
                         seguir = 1
                         if not torneo_elejido.equipos:  # Verificar que hay equipos en el torneo
                             print(Fore.RED + "No hay equipos disponibles en el torneo.")
@@ -95,15 +96,15 @@ def main()->None:
                                 seguir = input("Ingrese un 1 para seguir o 0 para terminar: ").strip()
                                 while not seguir.isdigit() or int(seguir) not in [0, 1]:
                                     print(Fore.RED + "Opción no válida. Intenta de nuevo.")
-                                    seguir = input(Fore.WHITE + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                                    seguir = input(Fore.GREEN + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
                                 seguir = int(seguir)
 
                             if jugadores_elejidos:  # Si hay jugadores seleccionados, agregarlos al equipo
                                 equipo_elejido.agregar_jugadores(*jugadores_elejidos)
                             else:
                                 print(Fore.YELLOW + "No se agregó ningún jugador al equipo.")
-
-                    elif operacion == 6:  # ................................ Eliminar jugadores de un equipo.
+                    # ................................ Eliminar jugadores de un equipo.
+                    elif operacion == 6:
                         seguir = 1
 
                         #  Verificar si hay equipos disponibles en el torneo
@@ -150,8 +151,8 @@ def main()->None:
                                         print(Fore.GREEN + "Jugadores eliminados exitosamente.")
                                     else:
                                         print(Fore.YELLOW + "No se eliminó ningún jugador del equipo.")
-
-                    elif operacion == 7:  # ................................ Agregar equipos al torneo.
+                    # ................................ Agregar equipos al torneo.
+                    elif operacion == 7:
                         seguir = 1
                         equipos_elejidos = []
 
@@ -185,8 +186,8 @@ def main()->None:
                                 print(Fore.GREEN + "Equipos agregados exitosamente al torneo.")
                             else:
                                 print(Fore.YELLOW + "No se agregó ningún equipo al torneo.")
-
-                    elif operacion == 8:  # ................................ Eliminar equipos del torneo.
+                    # ................................ Eliminar equipos del torneo.
+                    elif operacion == 8:
                         seguir = 1
                         lista = torneo_elejido.equipos
 
@@ -221,19 +222,19 @@ def main()->None:
                                 print(Fore.GREEN + "Equipos eliminados exitosamente del torneo.")
                             else:
                                 print(Fore.YELLOW + "No se eliminó ningún equipo del torneo.")
-
-                    elif operacion == 9:  # ................................ Anotar goles a un jugador.
+                    # ................................ Anotar goles a un jugador.
+                    elif operacion == 9:
                         equipo = torneo_elejido.equipos[Menus.menu_equipos(torneo_elejido.equipos)]
                         jugador = equipo.integrantes[Menus.menu_jugadores(equipo.integrantes)]
                         goles = int(input("Ingrese la cantidad de goles a anotar: "))
                         jugador.anotar_goles(goles)
-
-                    elif operacion == 10:  # ................................ Conocer el total de goles de los equipos.
+                    # ................................ Conocer el total de goles de los equipos.
+                    elif operacion == 10:
                         for equipo in torneo_elejido.equipos:
                             total_goles = sum(jugador.goles for jugador in equipo.integrantes)
                             print(f"El total de goles del equipo {equipo.nombre} es: {total_goles}")
-
-                    elif operacion == 11:  # ................................ Generar rol de juegos.
+                    # ................................ Generar rol de juegos.
+                    elif operacion == 11:
                         pass
 
                     elif operacion == 12:  # ................................ Conocer el total de goles de los equipos.
