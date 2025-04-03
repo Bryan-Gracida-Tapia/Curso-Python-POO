@@ -35,7 +35,6 @@ def menu_seleccion_operaciones():
     """
     :return: retorna un valor entero según haya elegido el usuario.
     """
-    print(Fore.CYAN + "     Bienvenido al generador de torneos")
     print(Fore.CYAN + "[1].- Crear nuevo jugador")
     print(Fore.CYAN + "[2].- Crear nuevo equipo")
     print(Fore.CYAN + "[3].- Ver lista de jugadores")
@@ -57,7 +56,7 @@ def menu_seleccion_operaciones():
 
 
 # ///////////////////////////////////////////////////////////////////////////////////////// Menú torneos.
-def menu_torneos(torneos: list[Torneo]):
+def menu_torneos(torneos: list[Torneo] or list[Equipo] or list[Jugador]):
     """
     :return: retorna un valor entero según haya elegido el usuario.
     """

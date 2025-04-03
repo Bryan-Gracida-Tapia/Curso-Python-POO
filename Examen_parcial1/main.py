@@ -17,8 +17,9 @@ def main()->None:
     torneos = []
     equipos_libres = []
     jugadores_libres = []
-    while opcion != 6:
-        Menus.limpiar()
+    Menus.limpiar()
+    while opcion != 3:
+
         print(Fore.RED +    "████████╗░█████╗░██████╗░███╗░░██╗███████╗ ░█████╗╗░██████╗")
         print(Fore.CYAN +   "╚══██╔══╝██╔══██╗██╔══██╗████╗░██║██╔════╝ ██╔══██╗██╔════╝")
         print(Fore.YELLOW + "░░░██║░░░██║░░██║██████╔╝██╔██╗██║█████╗ ░░██║░░██║╚█████╗░")
@@ -38,6 +39,7 @@ def main()->None:
             eleccion = Menus.menu_torneos(torneos)
             if eleccion != len(torneos):
                 torneo_elejido = torneos[eleccion]
+                print(Fore.RED + f"     Bienvenido al torneo: {torneo_elejido.nombre}")
                 print(torneo_elejido)
                 # ................................ Seleccionar una operación
                 operacion = 0
@@ -175,17 +177,13 @@ def main()->None:
 
                                     equipos_elejidos.append(equipo)
                                     print(Fore.GREEN + "Equipo seleccionado correctamente.")
-                                    equipos_libres.append(equipo)
+                                    equipos_libres.remove(equipo)
 
                                     seguir = input("Ingrese un 1 para seguir o 0 para terminar: ").strip()
                                     while not seguir.isdigit() or int(seguir) not in [0, 1]:
                                         print(Fore.RED + "Opción no válida. Intenta de nuevo.")
                                         seguir = input(Fore.WHITE + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
                                     seguir = int(seguir)
-
-                            #Se eliminan los equipos seleccionados después del bucle
-                            for equipo in equipos_elejidos:
-                                equipos_libres.remove(equipo)
 
                             # Verificar que haya equipos antes de agregarlos al torneo
                             if equipos_elejidos:
@@ -233,7 +231,11 @@ def main()->None:
                     elif operacion == 9:
                         equipo = torneo_elejido.equipos[Menus.menu_equipos(torneo_elejido.equipos)]
                         jugador = equipo.integrantes[Menus.menu_jugadores(equipo.integrantes)]
-                        goles = int(input("Ingrese la cantidad de goles a anotar: "))
+                        goles = input(f"ingrese la cantidad de goles que se le anotaran al jugador {jugador}: ")
+                        while not goles.isnumeric() :
+                            print(Fore.RED + "Opción no válida. Intenta de nuevo")
+                            goles = input(Fore.WHITE + "Selecciona una opción: ")
+                        goles = int(goles)
                         jugador.anotar_goles(goles)
                     # ................................ Conocer el total de goles de los equipos.
                     elif operacion == 10:
@@ -242,36 +244,22 @@ def main()->None:
                             print(f"El total de goles del equipo {equipo.nombre} es: {total_goles}")
                     # ................................ Generar rol de juegos.
                     elif operacion == 11:
-
-                        # Dentro del bloque de operaciones en el punto 11
-                        if not torneo_elejido.equipos:
-                            print("No hay equipos en el torneo para generar un rol de juegos.")
-                        else:
-                            if len(torneo_elejido.equipos) < 2:
-                                print("No hay suficientes equipos para generar un rol de juegos.")
-                                return
-
-                            # Se generan todas las combinaciones posibles sin repetirse
-                            partidos = list(itertools.combinations(torneo_elejido.equipos, 2))
-
-                            # Shuffle mezcle todos los partidos
-                            random.shuffle(partidos)
-
-                            print("\nRol de juegos generado:")
-                            for i, (equipo1, equipo2) in enumerate(partidos, 1):
-                                print(f"Partido {i}: {equipo1.nombre} vs {equipo2.nombre}")
-
-                    elif operacion == 12:  # ................................ Conocer el total de goles de los equipos.
+                        torneo_elejido.generar_rol_juegos()
+                    # ................................ Salir del torneo.
+                    elif operacion == 12:
                         print(f"Saliendo..")
 
+                    print()
+                    print(Fore.WHITE + "-----------------------------")
+                    print()
         elif opcion == 3:  # ................................ Salir del programa.
             print("Saliendo del programa...")
         else:
             print("Opcion no valida, intente de nuevo")
 
-            print()
-            print(Fore.BLACK + "-----------------------------")
-            print()
+        print()
+        print(Fore.WHITE + "-----------------------------")
+        print()
 
 if __name__ == '__main__':
     main()

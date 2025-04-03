@@ -1,6 +1,7 @@
 # Gracida Tapia Bryan.
 # 25 de Marzo del 2025.
-
+import random
+import itertools
 from Equipo import Equipo
 from colorama import Fore
 
@@ -81,6 +82,27 @@ class Torneo:
             i += 1
         print(Fore.RESET)  # Restablecer color
 
+    def generar_rol_juegos(self) -> None:
+        """
+        Muestra la lista de equipos participantes en el torneo.
+        """
+        # Dentro del bloque de operaciones en el punto 11
+        if not self._equipos:
+            print("No hay equipos en el torneo para generar un rol de juegos.")
+        else:
+            if len(self._equipos) < 2:
+                print("No hay suficientes equipos para generar un rol de juegos.")
+                return
+
+            # Se generan todas las combinaciones posibles sin repetirse
+            partidos = list(itertools.combinations(self._equipos, 2))
+
+            # Shuffle mezcle todos los partidos
+            random.shuffle(partidos)
+
+            print("\nRol de juegos generado:")
+            for i, (equipo1, equipo2) in enumerate(partidos, 1):
+                print(f"Partido {i}: {equipo1.nombre} vs {equipo2.nombre}")
     # /////////////////////////////////////////////////////////////////////////////////////// Property.
     @property
     def nombre(self) -> str:
