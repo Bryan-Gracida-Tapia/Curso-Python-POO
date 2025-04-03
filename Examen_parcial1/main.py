@@ -2,13 +2,15 @@
 # 25 de noviembre del 2024.
 # Descripción:
 # juegos.
+import itertools
+
 import Menus
 from colorama import Fore
+import random
 from Equipo import Equipo
 from Torneo import Torneo
 from Jugador import Jugador
 
-from colorama import Fore
 
 def main()->None:
     opcion = 0
@@ -160,21 +162,26 @@ def main()->None:
                             print(Fore.RED + "No hay equipos disponibles para seleccionar.")
                         else:
                             while seguir != 0:
-                                try:
-                                    equipo = equipos_libres[Menus.menu_equipos(equipos_libres)]  # Manejo de errores de índice
-                                    print(equipo)
-                                except IndexError:
-                                    print(Fore.RED + "Selección inválida. Intenta de nuevo.")
-                                    continue  # Volver a solicitar la selección
+                                if not equipos_libres:  # Verificar que hay jugadores disponibles
+                                    print(Fore.RED + "No quedan equipos libres.")
+                                    break
+                                else:
+                                    try:
+                                        equipo = equipos_libres[Menus.menu_equipos(equipos_libres)]  # Manejo de errores de índice
+                                        print(equipo)
+                                    except IndexError:
+                                        print(Fore.RED + "Selección inválida. Intenta de nuevo.")
+                                        continue  # Volver a solicitar la selección
 
-                                equipos_elejidos.append(equipo)
-                                print(Fore.GREEN + "Equipo seleccionado correctamente.")
+                                    equipos_elejidos.append(equipo)
+                                    print(Fore.GREEN + "Equipo seleccionado correctamente.")
+                                    equipos_libres.append(equipo)
 
-                                seguir = input("Ingrese un 1 para seguir o 0 para terminar: ").strip()
-                                while not seguir.isdigit() or int(seguir) not in [0, 1]:
-                                    print(Fore.RED + "Opción no válida. Intenta de nuevo.")
-                                    seguir = input(Fore.WHITE + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
-                                seguir = int(seguir)
+                                    seguir = input("Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                                    while not seguir.isdigit() or int(seguir) not in [0, 1]:
+                                        print(Fore.RED + "Opción no válida. Intenta de nuevo.")
+                                        seguir = input(Fore.WHITE + "Ingrese un 1 para seguir o 0 para terminar: ").strip()
+                                    seguir = int(seguir)
 
                             #Se eliminan los equipos seleccionados después del bucle
                             for equipo in equipos_elejidos:
@@ -235,7 +242,24 @@ def main()->None:
                             print(f"El total de goles del equipo {equipo.nombre} es: {total_goles}")
                     # ................................ Generar rol de juegos.
                     elif operacion == 11:
-                        pass
+
+                        # Dentro del bloque de operaciones en el punto 11
+                        if not torneo_elejido.equipos:
+                            print("No hay equipos en el torneo para generar un rol de juegos.")
+                        else:
+                            if len(torneo_elejido.equipos) < 2:
+                                print("No hay suficientes equipos para generar un rol de juegos.")
+                                return
+
+                            # Se generan todas las combinaciones posibles sin repetirse
+                            partidos = list(itertools.combinations(torneo_elejido.equipos, 2))
+
+                            # Shuffle mezcle todos los partidos
+                            random.shuffle(partidos)
+
+                            print("\nRol de juegos generado:")
+                            for i, (equipo1, equipo2) in enumerate(partidos, 1):
+                                print(f"Partido {i}: {equipo1.nombre} vs {equipo2.nombre}")
 
                     elif operacion == 12:  # ................................ Conocer el total de goles de los equipos.
                         print(f"Saliendo..")
