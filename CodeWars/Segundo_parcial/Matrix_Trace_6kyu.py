@@ -5,7 +5,7 @@ The trace of an n-by-n square matrix A is defined to be the sum of the elements 
 
 A matrix will be defined as an array of arrays, where the 1st entry represents the 1st row, the 2nd entry the 2nd row, and so on.
 
-For example, the following code...
+For example, the following code....
 
 [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 represents the matrix

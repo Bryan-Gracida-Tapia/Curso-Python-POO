@@ -9,7 +9,7 @@ F(0) = 1
 M(0) = 0
 F(n) = n - M(F(n - 1))
 M(n) = n - F(M(n - 1))
-Don't worry about negative numbers, n will always be greater than or equal to zero.
+Don't worry about negative numbers, n will always be greater than or equal to zero
 """
 def f(n):
     if n == 0:
