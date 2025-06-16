@@ -11,6 +11,7 @@ Parcial 1:
     Nombre_ejercicio.py
     Nombre_ejercicio.py
     etc.
+  ///////////////////////////////////////////////////////////////////////
 Parcial 2:
   Katas 8 kyu:
       Count_the_Monkeys_8kyu.py
@@ -35,3 +36,17 @@ Parcial 2:
       booce_6kyu.py
       Mutual_Recursion_6kyu.py
       Matrix_Trace_6kyu.py
+    ///////////////////////////////////////////////////////////////////////
+Parcial 3:
+  Katas 7 kyu:
+      Binary_addition_7kyu.py
+      Calculate_Julie's_Age_7kyu.py
+      Count_the_ones_7kyu.py
+      Make_class_7kyu.py
+  Katas 6 kyu:
+      The_Vowel_Code_6kyu.py
+  Katas 5 kyu:
+      Best_travel_5kyu.py
+      Mastermind_5kyu.py
+      Weight_for_weight_5kyu.py
+      
