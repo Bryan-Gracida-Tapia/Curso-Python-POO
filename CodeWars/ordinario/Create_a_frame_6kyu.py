@@ -25,7 +25,7 @@ def frame(text, char):
 
     result += char * (num_max + 4)
 
-    print(repr(result))  # Muestra el string con \n dentro como texto
+    return result
 
 if __name__ == '__main__':
     frame(['Small', 'frame','wer','oil'], '~')
