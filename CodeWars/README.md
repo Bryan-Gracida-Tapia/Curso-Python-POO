@@ -80,9 +80,3 @@ Este repositorio contiene la recopilación de katas resueltos en [Codewars](http
 
 Este repositorio busca mejorar habilidades de resolución de problemas, pensamiento lógico y programación en Python mediante la práctica constante de katas en Codewars.
 
----
-
-## 📁 Organización sugerida del repo
-
-
-      
